@@ -1,18 +1,6 @@
 version: '3'
 
 services:
-  db:
-    image: postgres:11.1-alpine
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - db:/var/lib/postgresql
-    networks:
-      - internal
-    ports:
-      - 5432
-
   app:
     build:
       context: .
@@ -24,18 +12,13 @@ services:
       DB_PASSWORD: postgres
     volumes:
       - .:/app
-    command: nodemon --exec "crystal run" src/hutchison-animals.cr
+    command: >
+      bash -c "crystal run db/init_db.cr
+      && nodemon --exec crystal run src/hutchison-animals.cr"
     ports:
       - 3000:3000
-    depends_on:
-      - db
     networks:
-      - internal
       - external
 
-volumes:
-  db:
-
 networks:
-  internal:
   external:

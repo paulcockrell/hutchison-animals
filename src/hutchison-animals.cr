@@ -80,6 +80,7 @@ module Hutchison::Animals
     end
   end
 
+  # http --json DELETE http://localhost:3000/animals/1 --print Hhb
   delete "/animals/:id" do |env|
     id = env.params.url["id"]
     animal = Repo.get(Animal, id)

@@ -13,7 +13,7 @@ services:
     volumes:
       - .:/app
     command: >
-      bash -c "crystal run db/init_db.cr
+      bash -c "sqlite3 ./db/hutchison_animals.db < db/migrations.sql
       && nodemon --exec crystal run src/hutchison-animals.cr"
     ports:
       - 3000:3000

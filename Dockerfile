@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
       libevent-openssl-2.0-5 \
       libevent-pthreads-2.0-5 \
       libssl-dev \
-      libsqlite3-dev && \
+      libsqlite3-dev \
+      sqlite3 && \
   # Node dependency
   curl --silent --location https://deb.nodesource.com/setup_9.x | bash - && \
   apt-get install -y nodejs && \

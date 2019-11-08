@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  app:
+  app: &app
     build:
       context: .
       dockerfile: Dockerfile
@@ -19,6 +19,12 @@ services:
       - 3000:3000
     networks:
       - external
+
+  test:
+    << : *app
+    command: >
+      bash -c "sqlite3 ./db/hutchison_animals_test.db < db/migrations.sql
+      && KEMAL_ENV=test crystal spec"
 
 networks:
   external:

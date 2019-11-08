@@ -24,6 +24,10 @@ shards:
     github: luislavena/radix
     version: 0.3.9
 
+  spec-kemal:
+    github: kemalcr/spec-kemal
+    commit: 64b89c719234ceb92c0a14762dce3afc6257fffc
+
   sqlite3:
     github: crystal-lang/crystal-sqlite3
     version: 0.14.0

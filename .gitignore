@@ -3,4 +3,4 @@
 /bin/
 /.shards/
 *.dwarf
-/db/data.db
+/db/*.db

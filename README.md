@@ -1,27 +1,55 @@
 # hutchison-animals
 
-TODO: Write a description here
+Hutchison Animals is a simple Animal management application.
+
+It has a ReactJS UI for users to manage their lists of Animals, groups and breeds.
+
+The backend service is a simple Crystal application making use of the Kemal framework.
+
+The data is persisted in a SQLite3 database.
 
 ## Installation
 
-TODO: Write installation instructions here
+### For development
+
+Install `Docker` and `Docker compose`
+
+### For production
+
+TODO: Add production buildin and deploy steps
 
 ## Usage
 
-TODO: Write usage instructions here
+### For development
+
+Visit
+
+```
+http://localhost:3000
+```
+
+### For production
+
+Visit
+
+TODO: Add production URL
 
 ## Development
 
-TODO: Write development instructions here
+Start the application within the docker container:
 
-## Contributing
+```
+docker-compose up app
+```
 
-1. Fork it (<https://github.com/paul.cockrell/hutchison-animals/fork>)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+## Testing
+
+Execute the following command
+
+```
+docker-compose up test
+```
 
 ## Contributors
 
-- [Paul Cockrell](https://github.com/paul.cockrell) - creator and maintainer
+- [Paul Cockrell](https://github.com/paulcockrell) - creator and maintainer

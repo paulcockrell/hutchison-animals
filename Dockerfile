@@ -2,13 +2,18 @@ FROM crystallang/crystal:0.31.1
 WORKDIR /app
 
 # install base dependencies
-RUN apt-get update && \
-  apt-get install -y libgconf-2-4 curl libreadline-dev && \
-  # postgres 11 installation
-  curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-  echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" | tee /etc/apt/sources.list.d/postgres.list && \
-  apt-get update && \
-  apt-get install -y postgresql-11 && \
+RUN apt-get update && apt-get install -y \
+      libgconf-2-4 \
+      curl \
+      libreadline-dev \
+      libssl-dev \
+      libevent-dev \
+      libevent-extra-2.0-5 \
+      libevent-openssl-2.0-5 \
+      libevent-pthreads-2.0-5 \
+      libssl-dev \
+      libsqlite3-dev \
+      sqlite3 && \
   # Node dependency
   curl --silent --location https://deb.nodesource.com/setup_9.x | bash - && \
   apt-get install -y nodejs && \

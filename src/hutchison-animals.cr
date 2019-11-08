@@ -31,7 +31,7 @@ module Hutchison::Animals
   end
 
   get "/animals" do
-    Repo.all(Animal)
+    Repo.all(Animal).to_json
   end
 
   # http --json http://localhost:3000/animals name=cat --print Hhb
@@ -40,6 +40,7 @@ module Hutchison::Animals
     animal = Animal.new
     animal.name = name
     changeset = Repo.insert(animal)
+
     if changeset.valid?
       animal.to_json
     else

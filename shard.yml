@@ -1,0 +1,17 @@
+name: hutchison-animals
+version: 0.1.0
+
+authors:
+  - Paul Cockrell <paul.cockrell@freeagent.com>
+
+targets:
+  hutchison-animals:
+    main: src/hutchison-animals.cr
+
+crystal: 0.31.1
+
+license: MIT
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal

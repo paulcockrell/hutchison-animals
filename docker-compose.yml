@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.1-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db:/var/lib/postgresql
+    networks:
+      - internal
+    ports:
+      - 5432
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SHARDS_CACHE_PATH: /app/.shards
+      DB_HOST: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    volumes:
+      - .:/app
+    command: nodemon --exec "crystal run" src/hutchison-animals.cr
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    networks:
+      - internal
+      - external
+
+volumes:
+  db:
+
+networks:
+  internal:
+  external:

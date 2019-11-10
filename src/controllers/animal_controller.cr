@@ -1,19 +1,38 @@
 class AnimalController < ApplicationController
-  # http --json GET http://localhost/animals -- print Hhb
-  get "/animals" do
-    Repo.all(Animal).to_json
+  BASE = "/animals"
+
+  get BASE, &method(:index)
+  get BASE + "/:id", &method(:show)
+
+  def index
+    animals = Repo.all(Animal)
+    animals.to_json
   end
 
-  # http --json GET http://locahost/animals/1 --print Hhb
-  get "/animals/:id" do |env|
-    id = env.params.url["id"]
-    animal = Repo.get(Animal, id)
+  def show
+    animal = Repo.get(Animal, params.url["id"])
     if animal
       animal.to_json
     else
-      halt env, status_code: 404, response: "Resource not found with ID #{id}"
+      halt context, status_code: 404, response: "BOO"
     end
   end
+
+  # http --json GET http://localhost/animals -- print Hhb
+  # get "/animals" do
+  #   Repo.all(Animal).to_json
+  # end
+
+  # http --json GET http://locahost/animals/1 --print Hhb
+  # get "/animals/:id" do |env|
+  #   id = env.params.url["id"]
+  #   animal = Repo.get(Animal, id)
+  #   if animal
+  #     animal.to_json
+  #   else
+  #     halt env, status_code: 404, response: "Resource not found with ID #{id}"
+  #   end
+  # end
 
   # http --json POST http://localhost:3000/animals name=cat --print Hhb
   post "/animals" do |env|

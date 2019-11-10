@@ -15,5 +15,9 @@ module Hutchison::Animals
     "Hello, World"
   end
 
+  error 404 do
+    "Resource not found :-("
+  end
+
   Kemal.run
 end

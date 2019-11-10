@@ -1,9 +1,8 @@
 require "./spec_helper"
 
 describe Hutchison::Animals do
-  # TODO: Write tests
-
-  it "works" do
-    false.should eq(true)
+  it "renders /" do
+    get "/"
+    response.body.should eq "Hello World!"
   end
 end

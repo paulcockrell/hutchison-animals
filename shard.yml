@@ -13,6 +13,8 @@ crystal: 0.31.1
 license: MIT
 
 dependencies:
+  spec-kemal:
+    github: kemalcr/spec-kemal
   kemal:
     github: kemalcr/kemal
   sqlite3:

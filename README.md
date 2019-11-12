@@ -14,6 +14,11 @@ The data is persisted in a SQLite3 database.
 
 Install `Docker` and `Docker compose`
 
+Create .env file in project root:
+```
+DB_PATH=./db/hutchison_animals_dev.db
+```
+
 ### For production
 
 ```

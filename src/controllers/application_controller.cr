@@ -8,7 +8,7 @@ abstract class ApplicationController
 
     config do |conf|
       conf.adapter = Crecto::Adapters::SQLite3
-      conf.database = "./db/hutchison_animals.db"
+      conf.database = ENV.fetch("DB_PATH") { "./db/hutchison_animals.db" }
     end
   end
 

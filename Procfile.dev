@@ -1,0 +1,2 @@
+app: nodemon --exec crystal run src/hutchison-animals.cr
+js: npm start

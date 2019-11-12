@@ -26,5 +26,10 @@ services:
       bash -c "sqlite3 ./db/hutchison_animals_test.db < db/migrations.sql
       && KEMAL_ENV=test crystal spec"
 
+  build:
+    << : *app
+    command: >
+      bash -c "crystal build src/app.cr --release"
+
 networks:
   external:

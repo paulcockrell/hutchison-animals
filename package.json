@@ -1,0 +1,20 @@
+{
+  "name": "hutchison-animals",
+  "version": "1.0.0",
+  "description": "Hutchison Animal management system",
+  "main": "app.jsx",
+  "repository": "git@me.github.com:paulcockrell/hutchison-animals.git",
+  "author": "Paul Cockrell <paulcockrell@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-react": "^4.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.2"
+  }
+}

@@ -12,7 +12,8 @@ module Hutchison::Animals
   VERSION = "0.1.0"
 
   get "/" do |env|
-    "Hello, World!"
+    env.response.content_type = "text/html"
+    render "src/views/index.ecr"
   end
 
   Kemal.run

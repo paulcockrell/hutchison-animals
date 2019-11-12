@@ -16,7 +16,9 @@ Install `Docker` and `Docker compose`
 
 ### For production
 
-TODO: Add production buildin and deploy steps
+```
+docker-compose up build
+```
 
 ## Usage
 

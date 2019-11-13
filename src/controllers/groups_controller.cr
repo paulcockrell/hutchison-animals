@@ -1,4 +1,13 @@
 class GroupsController < ApplicationController
+  # http --json GET http://localhost/groups_count -- print Hhb
+  #
+  # Index
+  #
+  get "/groups_count" do |env|
+    count = Repo.aggregate(Group, :count, :id).as(Int64)
+    {model: Group.to_s, count: count}.to_json
+  end
+
   # http --json GET http://locahost/animals/:id/groups --print Hhb
   #
   # Index

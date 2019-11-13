@@ -1,4 +1,13 @@
 class AnimalsController < ApplicationController
+  # http --json GET http://localhost/animals_count -- print Hhb
+  #
+  # Index
+  #
+  get "/animals_count" do |env|
+    count = Repo.aggregate(Animal, :count, :id).as(Int64)
+    {model: Animal.to_s, count: count}.to_json
+  end
+
   # http --json GET http://localhost/animals -- print Hhb
   #
   # Index

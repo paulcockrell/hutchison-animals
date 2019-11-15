@@ -10,4 +10,6 @@ class Animal < Crecto::Model
       presence: true,
       format: {pattern: /[a-zA-Z]*/},
       length: {min: 2, max: 50}
+
+  unique_constraint :name
 end

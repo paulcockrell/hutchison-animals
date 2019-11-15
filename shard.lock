@@ -1,5 +1,9 @@
 version: 1.0
 shards:
+  callbacks:
+    github: vladfaust/callbacks.cr
+    version: 0.2.0
+
   crecto:
     github: Crecto/crecto
     version: 0.11.2

@@ -23,6 +23,7 @@ class AnimalsController < ApplicationController
   get "/animals/:id" do |env|
     animal = Repo.get(Animal, env.params.url["id"])
     if animal
+      record_event(animal, Event::Action::VIEWED)
       animal.to_json
     else
       halt env, status_code: 404, response: "Resource 'Animal' not found"
@@ -39,7 +40,8 @@ class AnimalsController < ApplicationController
 
     changeset = Repo.insert(animal)
     if changeset.valid?
-      animal.to_json
+      record_event(changeset.instance, Event::Action::CREATED)
+      changeset.instance.to_json
     else
       changeset.errors.to_json
     end
@@ -60,7 +62,8 @@ class AnimalsController < ApplicationController
     changeset = Repo.update(animal)
 
     if changeset.valid?
-      animal.to_json
+      record_event(changeset.instance, Event::Action::UPDATED)
+      changeset.instance.to_json
     else
       changeset.errors.to_json
     end
@@ -79,7 +82,8 @@ class AnimalsController < ApplicationController
     changeset = Repo.delete(animal)
 
     if changeset.valid?
-      "Deleted"
+      record_event(animal, Event::Action::DELETED)
+      {deleted: true}.to_json
     else
       changeset.errors.to_json
     end

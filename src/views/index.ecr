@@ -14,7 +14,7 @@
   </head>
 
   <body>
-      <div class="container">
+      <div class="container has-margin-bottom-75">
           <div class="columns">
               <div class="column is-10 is-offset-1">
                   <section class="hero is-info welcome is-small has-margin-bottom-75">
@@ -29,6 +29,9 @@
                           </div>
                       </div>
                   </section>
+
+                  <div id="navigation"></div>
+
                   <section class="info-tiles">
                       <div class="tile is-ancestor has-text-centered">
                           <div id="animal-tile" class="tile is-parent"></div>
@@ -163,9 +166,16 @@
               </div>
           </div>
       </div>
-      <script async type="text/javascript" src="../js/bulma.js"></script>
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Animal Management System</strong> by <a href="https://www.linkedin.com/in/paul-c-35aa698/">Paul Cockrell</a>. The source code is top secret on
+            <a href="http://github.com/paulcockrell/hutchison-animals">Github</a>.
+          </p>
+        </div>
+      </footer>
 
-      <main id="app"></main>
+      <script async type="text/javascript" src="../js/bulma.js"></script>
       <script src="/js/app.js"></script>
   </body>
 </html>

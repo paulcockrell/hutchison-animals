@@ -13,7 +13,13 @@ class EventsController < ApplicationController
   # Index
   #
   get "/events" do |env|
-    Repo.all(Event).to_json
+    limit = env.params.query["limit"]?
+    query = if limit
+      Query.limit(limit.to_i)
+    else
+      Query.where("1=1")
+    end
+    Repo.all(Event, query).to_json
   end
 
   get "/events/action_types" do |env|

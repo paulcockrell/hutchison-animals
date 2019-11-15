@@ -41,7 +41,7 @@ class EventsTable extends Component {
                   <table className="table is-fullwidth is-striped">
                       <tbody>
                           {records.map((record) => (
-                            <tr>
+                            <tr key={record.createdAt}>
                                 <td width="5%"><i className="fa fa-bell-o"></i></td>
                                 <td>{record.objectClass} #{record.objectId} was {record.actionType} on {moment(record.createdAt).format('LLL')}</td>
                             </tr>

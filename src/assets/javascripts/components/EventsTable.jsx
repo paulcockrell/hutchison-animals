@@ -16,16 +16,11 @@ class EventsTable extends Component {
   componentDidMount() {
     const {
       records_path,
-      action_types_path,
     } = this.props
 
     fetch(records_path)
       .then(response => response.json())
       .then(data => this.setState({ records: data }))
-
-    fetch(action_types_path)
-      .then(response => response.json())
-      .then(data => this.setState({ action_types: data }))
   }
 
   render () {
@@ -35,28 +30,28 @@ class EventsTable extends Component {
     } = this.state
 
     return (
-      <div class="card events-card">
-          <header class="card-header">
-              <p class="card-header-title">
+      <div className="card events-card">
+          <header className="card-header">
+              <p className="card-header-title">
                   {title}
               </p>
           </header>
-          <div class="card-table">
-              <div class="content">
-                  <table class="table is-fullwidth is-striped">
+          <div className="card-table">
+              <div className="content">
+                  <table className="table is-fullwidth is-striped">
                       <tbody>
                           {records.map((record) => (
                             <tr>
-                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                <td>{record.object_class} was {record.action_type} on {moment(record.created_at).format('LLL')}</td>
+                                <td width="5%"><i className="fa fa-bell-o"></i></td>
+                                <td>{record.objectClass} #{record.objectId} was {record.actionType} on {moment(record.createdAt).format('LLL')}</td>
                             </tr>
                           ))}
                       </tbody>
                   </table>
               </div>
           </div>
-          <footer class="card-footer">
-              <a href="#" class="card-footer-item">View All</a>
+          <footer className="card-footer">
+              <a href="#" className="card-footer-item">View All</a>
           </footer>
       </div>
     )
@@ -66,7 +61,6 @@ class EventsTable extends Component {
 EventsTable.propTypes = {
   title: PropTypes.string.isRequired,
   records_path: PropTypes.string.isRequired,
-  action_types_path: PropTypes.string.isRequired,
 }
 
 export default EventsTable

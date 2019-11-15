@@ -19,5 +19,18 @@ class Event < Crecto::Model
 
   validates :object_class,
       presence: true
+
+  def to_json(json : JSON::Builder)
+    json.raw(self.to_hash.to_json)
+  end
+
+  def to_hash
+    {
+      "objectId": object_id,
+      "objectClass": object_class,
+      "actionType": action.to_s,
+      "createdAt": created_at
+    }
+  end
 end
 

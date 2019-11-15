@@ -82,7 +82,7 @@ class AnimalsController < ApplicationController
     changeset = Repo.delete(animal)
 
     if changeset.valid?
-      record_event(animal, Event::Action::DELETED)
+      record_event(changeset.instance, Event::Action::DELETED)
       {deleted: true}.to_json
     else
       changeset.errors.to_json

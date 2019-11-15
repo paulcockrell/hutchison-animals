@@ -1,9 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/assets/javascripts/app.jsx',
+  entry: {
+    'layout': './src/assets/javascripts/layout.jsx',
+    'index': './src/assets/javascripts/index.jsx',
+    'edit': './src/assets/javascripts/edit.jsx',
+  },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'public/js/'),
   },
   module: {

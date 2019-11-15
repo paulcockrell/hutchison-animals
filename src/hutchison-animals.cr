@@ -22,10 +22,18 @@ module Hutchison::Animals
   file.sync = true
   Crecto::DbLogger.set_handler(file)
 
-  # Web Application
+  # Index
+  #
   get "/" do |env|
     env.response.content_type = "text/html"
-    render "src/views/index.ecr"
+    render "src/views/index.ecr", "src/views/layouts/layout.ecr"
+  end
+
+  # Animals
+  #
+  get "/manage/animals" do |env|
+    env.response.content_type = "text/html"
+    render "src/views/animals.ecr", "src/views/layouts/layout.ecr"
   end
 
   Kemal.run

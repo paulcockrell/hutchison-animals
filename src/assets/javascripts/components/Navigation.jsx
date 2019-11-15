@@ -43,7 +43,7 @@ class Navigation extends Component {
 
         <div id="navbarBasicExample" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
           <div className="navbar-start">
-            <a className="navbar-item">
+            <a className="navbar-item" href="/">
               Home
             </a>
 
@@ -53,7 +53,7 @@ class Navigation extends Component {
               </a>
 
               <div className="navbar-dropdown">
-                <a className="navbar-item">
+                <a className="navbar-item" href="/manage/animals">
                   Animals
                 </a>
                 <a className="navbar-item">

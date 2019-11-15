@@ -15,9 +15,9 @@ class EventsController < ApplicationController
   get "/events" do |env|
     limit = env.params.query["limit"]?
     query = if limit
-      Query.limit(limit.to_i)
+      Query.limit(limit.to_i).order_by("created_at desc")
     else
-      Query.where("1=1")
+      Query.where("1=1").order_by("created_at desc")
     end
     Repo.all(Event, query).to_json
   end

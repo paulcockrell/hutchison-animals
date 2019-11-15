@@ -28,6 +28,7 @@ class GroupsController < ApplicationController
   get "/animals/:id/groups/:group_id" do |env|
     group = Repo.get(Group, env.params.url["group_id"], Query.where("animal_id = ?", env.params.url["id"]))
     if group
+      record_event(group, Event::Action::VIEWED)
       group.to_json
     else
       halt env, status_code: 404, response: "Resource not found"
@@ -50,7 +51,8 @@ class GroupsController < ApplicationController
 
     changeset = Repo.insert(group)
     if changeset.valid?
-      group.to_json
+      record_event(changeset.instance, Event::Action::CREATED)
+      changeset.instance.to_json
     else
       changeset.errors.to_json
     end
@@ -70,7 +72,8 @@ class GroupsController < ApplicationController
 
     changeset = Repo.update(group)
     if changeset.valid?
-      group.to_json
+      record_event(changeset.instance, Event::Action::UPDATED)
+      changeset.instance.to_json
     else
       changeset.errors.to_json
     end
@@ -88,7 +91,8 @@ class GroupsController < ApplicationController
 
     changeset = Repo.delete(group)
     if changeset.valid?
-      "Deleted"
+      record_event(changeset.instance, Event::Action::DELETED)
+      {deleted: true}.to_json
     else
       changeset.errors.to_json
     end

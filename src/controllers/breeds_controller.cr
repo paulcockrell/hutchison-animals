@@ -30,6 +30,7 @@ class BreedsController < ApplicationController
     query = Query.join(:groups).where("groups.animal_id = ?", env.params.url["id"])
     breed = Repo.get(Breed, env.params.url["breed_id"], query)
     if breed
+      record_event(breed, Event::Action::VIEWED)
       breed.to_json
     else
       halt env, status_code: 404, response: "Resource not found"
@@ -53,7 +54,8 @@ class BreedsController < ApplicationController
 
     changeset = Repo.insert(breed)
     if changeset.valid?
-      breed.to_json
+      record_event(changeset.instance, Event::Action::CREATED)
+      changeset.instance.to_json
     else
       changeset.errors.to_json
     end
@@ -73,7 +75,8 @@ class BreedsController < ApplicationController
 
     changeset = Repo.update(breed)
     if changeset.valid?
-      breed.to_json
+      record_event(changeset.instance, Event::Action::UPDATED)
+      changeset.instance.to_json
     else
       changeset.errors.to_json
     end
@@ -91,7 +94,8 @@ class BreedsController < ApplicationController
 
     changeset = Repo.delete(breed)
     if changeset.valid?
-      "Deleted"
+      record_event(changeset.instance, Event::Action::DELETED)
+      {deleted: true}.to_json
     else
       changeset.errors.to_json
     end

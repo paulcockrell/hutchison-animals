@@ -33,7 +33,7 @@ module Hutchison::Animals
   #
   get "/manage/animals" do |env|
     env.response.content_type = "text/html"
-    render "src/views/animals.ecr", "src/views/layouts/layout.ecr"
+    render "src/views/manage_animals.ecr", "src/views/layouts/layout.ecr"
   end
 
   Kemal.run

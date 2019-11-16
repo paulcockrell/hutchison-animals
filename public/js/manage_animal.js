@@ -446,25 +446,25 @@ eval("var logLevel = \"info\";\n\nfunction dummy() {}\n\nfunction shouldLog(leve
 
 /***/ }),
 
-/***/ "./src/assets/javascripts/edit.jsx":
-/*!*****************************************!*\
-  !*** ./src/assets/javascripts/edit.jsx ***!
-  \*****************************************/
+/***/ "./src/assets/javascripts/manage_animal.jsx":
+/*!**************************************************!*\
+  !*** ./src/assets/javascripts/manage_animal.jsx ***!
+  \**************************************************/
 /*! no exports provided */
 /***/ (function(module, exports) {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nError: ENOENT: no such file or directory, open '/app/src/assets/javascripts/edit.jsx'\");\n\n//# sourceURL=webpack:///./src/assets/javascripts/edit.jsx?");
+eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nError: ENOENT: no such file or directory, open '/app/src/assets/javascripts/manage_animal.jsx'\");\n\n//# sourceURL=webpack:///./src/assets/javascripts/manage_animal.jsx?");
 
 /***/ }),
 
 /***/ 2:
-/*!*************************************************************************************************!*\
-  !*** multi (webpack)-dev-server/client?http://localhost:8080 ./src/assets/javascripts/edit.jsx ***!
-  \*************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** multi (webpack)-dev-server/client?http://localhost:8080 ./src/assets/javascripts/manage_animal.jsx ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! /app/node_modules/webpack-dev-server/client/index.js?http://localhost:8080 */\"./node_modules/webpack-dev-server/client/index.js?http://localhost:8080\");\nmodule.exports = __webpack_require__(/*! ./src/assets/javascripts/edit.jsx */\"./src/assets/javascripts/edit.jsx\");\n\n\n//# sourceURL=webpack:///multi_(webpack)-dev-server/client?");
+eval("__webpack_require__(/*! /app/node_modules/webpack-dev-server/client/index.js?http://localhost:8080 */\"./node_modules/webpack-dev-server/client/index.js?http://localhost:8080\");\nmodule.exports = __webpack_require__(/*! ./src/assets/javascripts/manage_animal.jsx */\"./src/assets/javascripts/manage_animal.jsx\");\n\n\n//# sourceURL=webpack:///multi_(webpack)-dev-server/client?");
 
 /***/ })
 

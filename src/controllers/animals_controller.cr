@@ -1,4 +1,6 @@
 class AnimalsController < ApplicationController
+  PAGE_LIMIT = 10
+
   # http --json GET http://localhost/animals_count -- print Hhb
   #
   # Index
@@ -43,7 +45,7 @@ class AnimalsController < ApplicationController
       record_event(changeset.instance, Event::Action::CREATED)
       changeset.instance.to_json
     else
-      changeset.errors.to_json
+      halt env, status_code: 404, response: changeset.errors.to_json
     end
   end
 
@@ -65,7 +67,7 @@ class AnimalsController < ApplicationController
       record_event(changeset.instance, Event::Action::UPDATED)
       changeset.instance.to_json
     else
-      changeset.errors.to_json
+      halt env, status_code: 404, response: changeset.errors.to_json
     end
   end
 
@@ -84,8 +86,8 @@ class AnimalsController < ApplicationController
     if changeset.valid?
       record_event(changeset.instance, Event::Action::DELETED)
       {deleted: true}.to_json
-    else
-      changeset.errors.to_json
+    else 
+      halt env, status_code: 404, response: changeset.errors.to_json
     end
   end
 end

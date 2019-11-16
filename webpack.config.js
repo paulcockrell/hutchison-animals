@@ -4,7 +4,7 @@ module.exports = {
   entry: {
     'layout': './src/assets/javascripts/layout.jsx',
     'index': './src/assets/javascripts/index.jsx',
-    'edit': './src/assets/javascripts/edit.jsx',
+    'manage_animals': './src/assets/javascripts/manage_animals.jsx',
   },
   output: {
     filename: '[name].js',

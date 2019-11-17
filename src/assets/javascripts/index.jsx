@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Navigation from './components/Navigation.jsx'
-import InfoTile from './components/InfoTile.jsx'
-import EventsTable from './components/EventsTable.jsx'
+import Navigation from './components/shared/Navigation.jsx'
+import InfoTile from './components/shared/InfoTile.jsx'
+import EventsTable from './components/landing/EventsTable.jsx'
 
 ReactDOM.render(<Navigation />, document.getElementById('navigation'))
 ReactDOM.render(<EventsTable title="Events log" records_path="/events?limit=10" />, document.getElementById('events-table'))

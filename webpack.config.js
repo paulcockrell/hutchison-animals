@@ -5,6 +5,7 @@ module.exports = {
     'layout': './src/assets/javascripts/layout.jsx',
     'index': './src/assets/javascripts/index.jsx',
     'manage_animals': './src/assets/javascripts/manage_animals.jsx',
+    'manage_groups': './src/assets/javascripts/manage_groups.jsx',
   },
   output: {
     filename: '[name].js',

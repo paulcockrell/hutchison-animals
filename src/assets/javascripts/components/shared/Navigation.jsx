@@ -56,7 +56,7 @@ class Navigation extends Component {
                 <a className="navbar-item" href="/manage/animals">
                   Animals
                 </a>
-                <a className="navbar-item">
+                <a className="navbar-item" href="/manage/groups">
                   Groups
                 </a>
                 <a className="navbar-item">

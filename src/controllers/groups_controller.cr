@@ -1,4 +1,7 @@
 class GroupsController < ApplicationController
+
+  # API routes
+
   # http --json GET http://localhost/groups_count -- print Hhb
   #
   # Index

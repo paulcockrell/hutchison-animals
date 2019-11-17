@@ -5,13 +5,11 @@ import PropTypes from 'prop-types'
 class FormFeedback extends Component {
   render() {
     const {
-      type,
-      title,
-      subtitle,
+      feedback,
     } = this.props
 
     let heroType;
-    switch(type) {
+    switch(feedback.type) {
       case "error": {
         heroType = "is-danger"
         break
@@ -26,19 +24,19 @@ class FormFeedback extends Component {
     }
 
     return (
-      <div className="container has-margin-bottom-75">
-        <div className={`notification ${heroType}`}>
-          {title} - {subtitle}
+      <section className="section">
+        <div className="container has-margin-bottom-75">
+          <div className={`notification ${heroType}`}>
+            {feedback.type.toUpperCase()} - {feedback.message}
+          </div>
         </div>
-      </div>
+      </section>
     )
   }
 }
 
 FormFeedback.propTypes = {
-  type: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
+  feedback: PropTypes.object.isRequired,
 }
 
 export default FormFeedback

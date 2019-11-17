@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import FormFeedback from '../components/FormFeedback.jsx'
+import FormFeedback from '../../components/shared/FormFeedback.jsx'
 
 class AnimalForm extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      animalName: '',
+      name: '',
       errors: this.props.errors,
     }
 
@@ -17,9 +17,21 @@ class AnimalForm extends Component {
     this.handleCancel = this.handleCancel.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.errors !== this.props.errors ||
+        prevProps.selectedRecord !== this.props.selectedRecord) {
+
+      const state = {
+        ...this.props.selectedRecord,
+        errors: this.props.errors,
+      }
+      this.setState(state)
+    }
+  }
+
   handleChange(event) {
     this.setState({
-      animalName: event.target.value
+      name: event.target.value
     })
   }
 
@@ -27,25 +39,33 @@ class AnimalForm extends Component {
     event.preventDefault();
 
     const {
-      animalName,
+      id,
+      name,
     } = this.state
 
     const data = {
-      name: animalName
+      id: id,
+      name: name,
     }
 
-    this.props.addRecord(data)
+    this.setState({
+      id: null,
+      name: '',
+    })
+
+    this.props.createOrUpdateRecord(data)
   }
 
   handleCancel() {
     this.setState({
-      animalName: '',
+      name: '',
     })
+    this.props.handleCancel()
   }
 
   render() {
     const {
-      animalName,
+      name,
       errors,
     } = this.state
 
@@ -64,7 +84,7 @@ class AnimalForm extends Component {
                   <label className="label">Name</label>
 
                   <div className="control">
-                    <input className="input" type="text" placeholder="Animal name" value={animalName} onChange={this.handleChange}/>
+                    <input className="input" type="text" placeholder="Animal name" value={name} onChange={this.handleChange}/>
                   </div>
 
                   <div className={`field-errors ${errors.length > 0 ? '' : 'is-hidden'}`}>
@@ -92,8 +112,10 @@ class AnimalForm extends Component {
 }
 
 AnimalForm.propTypes = {
-  addRecord: PropTypes.func.isRequired,
+  createOrUpdateRecord: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
   errors: PropTypes.array.isRequired,
+  selectedRecord: PropTypes.object,
 }
 
 export default AnimalForm

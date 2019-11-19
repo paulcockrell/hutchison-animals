@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import GroupForm from './GroupForm.jsx'
 import GroupTable from './GroupTable.jsx'
 import FormFeedback from '../../components/shared/FormFeedback.jsx'
+import Breadcrumb from '../../components/shared/Breadcrumb.jsx'
 
 const RECORDS_PER_PAGE = 5
 const DELETED = 'deleted'
@@ -181,6 +182,13 @@ class Groups extends Component {
       animal,
     } = this.state
 
+    const url = '/manage/animals'
+    const breadcrumbs = [
+      {url: '/', name: 'home'},
+      {url: '/manage/animals', name: 'animals'},
+      {url: '#', name: 'groups'},
+    ]
+
     if (!animal) {
       return (
         <h1>Loading...</h1>
@@ -190,7 +198,13 @@ class Groups extends Component {
     return (
       <div>
         <section className="section">
-          <h1 className="title has-margin-bottom-75">Manage Groups for Animal '{animal.name}'</h1>
+          <Breadcrumb
+            items={breadcrumbs} />
+        </section>
+        <section className="section">
+          <h1 className="title has-margin-bottom-75">
+            Manage Groups for Animal <a href={url} alt="Animals">{animal.name}</a>
+          </h1>
         </section>
 
         {feedback ? <FormFeedback feedback={feedback} /> : null }

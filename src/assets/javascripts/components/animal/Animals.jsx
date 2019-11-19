@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import AnimalForm from './AnimalForm.jsx'
 import AnimalTable from './AnimalTable.jsx'
 import FormFeedback from '../../components/shared/FormFeedback.jsx'
+import Breadcrumb from '../../components/shared/Breadcrumb.jsx'
 
 const RECORDS_PER_PAGE = 5
 const DELETED = 'deleted'
@@ -30,6 +31,7 @@ class Animals extends Component {
     this.deleteRecord = this.deleteRecord.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.setSelectedRecord = this.setSelectedRecord.bind(this)
+    this.redirectToGroup = this.redirectToGroup.bind(this)
   }
 
   componentDidMount() {
@@ -115,6 +117,15 @@ class Animals extends Component {
     })
   }
 
+  redirectToGroup(record) {
+    const {
+      path,
+    } = this.state
+
+    const url = `/manage${path}/${record.id}/groups`
+    window.location = url
+  }
+
   setSelectedRecord(record) {
     this.setState({
       selectedRecord: record,
@@ -163,8 +174,18 @@ class Animals extends Component {
       selectedRecord,
     } = this.state
 
+    const breadcrumbs = [
+      {url: '/', name: 'home'},
+      {url: '#', name: 'animals'},
+    ]
+
     return (
       <div>
+        <section className="section">
+          <Breadcrumb
+            items={breadcrumbs} />
+        </section>
+
         <section className="section">
           <h1 className="title has-margin-bottom-75">Manage Animals</h1>
         </section>
@@ -172,7 +193,7 @@ class Animals extends Component {
         {feedback ? <FormFeedback feedback={feedback} /> : null }
 
         <AnimalForm createOrUpdateRecord={this.createOrUpdateRecord} handleCancel={this.handleCancel} errors={errors} selectedRecord={selectedRecord} />
-        <AnimalTable records={records} deleteRecord={this.deleteRecord} setSelectedRecord={this.setSelectedRecord} />
+        <AnimalTable records={records} deleteRecord={this.deleteRecord} setSelectedRecord={this.setSelectedRecord} redirectToGroup={this.redirectToGroup} />
       </div>
     )
   }

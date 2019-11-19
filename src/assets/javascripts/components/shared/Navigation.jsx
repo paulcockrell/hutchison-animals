@@ -47,27 +47,9 @@ class Navigation extends Component {
               Home
             </a>
 
-            <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">
-                Manage
-              </a>
-
-              <div className="navbar-dropdown">
-                <a className="navbar-item" href="/manage/animals">
-                  Animals
-                </a>
-                <a className="navbar-item" href="/manage/groups">
-                  Groups
-                </a>
-                <a className="navbar-item">
-                  Breeds
-                </a>
-                <hr className="navbar-divider" />
-                <a className="navbar-item">
-                  Bulk import
-                </a>
-              </div>
-            </div>
+            <a className="navbar-item" href="/manage/animals">
+              Manage
+            </a>
 
             <a className="navbar-item">
               Help

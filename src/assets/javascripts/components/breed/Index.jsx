@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import AnimalForm from './AnimalForm.jsx'
-import AnimalTable from './AnimalTable.jsx'
+import Form from './Form.jsx'
+import Table from './Table.jsx'
 import FormFeedback from '../../components/shared/FormFeedback.jsx'
 import Breadcrumb from '../../components/shared/Breadcrumb.jsx'
 
@@ -12,30 +12,47 @@ const CREATED = 'created'
 const UPDATED = 'updated'
 const RESET = 'reset'
 const ERROR = 'error'
+const ERROR_PATH = '/error'
 
-class Animals extends Component {
+class Index extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       path: this.props.path,
+      animalId: this.props.animalId,
+      groupId: this.props.groupId,
       records: [],
       currentPage: 1,
       errors: [],
       feedback: null,
       selectedRecord: null,
+      group: null,
     }
 
+    this.loadGroupRecord = this.loadGroupRecord.bind(this)
     this.loadRecords = this.loadRecords.bind(this)
     this.createOrUpdateRecord = this.createOrUpdateRecord.bind(this)
     this.deleteRecord = this.deleteRecord.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.setSelectedRecord = this.setSelectedRecord.bind(this)
-    this.redirectToGroup = this.redirectToGroup.bind(this)
+    this.showRecord = this.showRecord.bind(this)
   }
 
   componentDidMount() {
+    this.loadGroupRecord()
     this.loadRecords()
+  }
+
+  loadGroupRecord(groupId) {
+    const {
+      path: url,
+    } = this.state
+
+    fetch(url)
+    .then(response => response.json())
+    .then(record => this.setState({group: record}))
+    .catch(_response => window.location = ERROR_PATH)
   }
 
   loadRecords(currentPage = 1) {
@@ -44,13 +61,15 @@ class Animals extends Component {
       records,
     } = this.state
 
+    const url = `${path}/breeds`
+
     if (currentPage <= 0 || currentPage > (Math.ceil(records.length / RECORDS_PER_PAGE) || 1)) return
 
     this.setState({
       currentPage: currentPage,
     })
 
-    fetch(path)
+    fetch(url)
     .then(response => response.json())
     .then(records => this.setState({records: records}))
   }
@@ -61,8 +80,8 @@ class Animals extends Component {
       records,
     } = this.state
 
-    const deletePath = `${path}/${record.id}`
-    fetch(deletePath, {
+    const url = `${path}/breeds/${record.id}`
+    fetch(url, {
       method: "DELETE",
     })
     .then(response => response.json())
@@ -86,10 +105,10 @@ class Animals extends Component {
 
     if (isNewRecord) {
       method = 'POST'
-      url = path
+      url = `${path}/breeds`
     } else {
       method = 'PATCH'
-      url = `${path}/${data.id}`
+      url = `${path}/breeds/${data.id}`
     }
 
     fetch(url, {
@@ -117,12 +136,14 @@ class Animals extends Component {
     })
   }
 
-  redirectToGroup(record) {
+  showRecord(record) {
     const {
       path,
+      animalId,
+      groupId,
     } = this.state
 
-    const url = `/manage${path}/${record.id}/groups`
+    const url = `/manage/animals/${animalId}/groups/${groupId}/breeds/${record.id}`
     window.location = url
   }
 
@@ -172,12 +193,26 @@ class Animals extends Component {
       records,
       feedback,
       selectedRecord,
+      group,
+      animalId,
+      groupId,
     } = this.state
 
+    const url = '/manage/groups'
     const breadcrumbs = [
       {url: '/', name: 'home'},
-      {url: '#', name: 'animals'},
+      {url: '/manage/animals', name: 'animals'},
+      {url: `/manage/animals/${animalId}/`, name: animalId},
+      {url: `/manage/animals/${animalId}/groups/`, name: 'groups'},
+      {url: `/manage/animals/${animalId}/groups/${groupId}/`, name: groupId},
+      {url: '#', name: 'breeds'},
     ]
+
+    if (!group) {
+      return (
+        <h1>Loading...</h1>
+      )
+    }
 
     return (
       <div>
@@ -185,18 +220,34 @@ class Animals extends Component {
           <Breadcrumb
             items={breadcrumbs} />
         </section>
-
         <section className="section">
-          <h1 className="title has-margin-bottom-75">Manage Animals</h1>
+          <h1 className="title has-margin-bottom-75">
+            Manage Breeds for Group <a href={url} alt="Groups">{group.name}</a>
+          </h1>
         </section>
 
         {feedback ? <FormFeedback feedback={feedback} /> : null }
 
-        <AnimalForm createOrUpdateRecord={this.createOrUpdateRecord} handleCancel={this.handleCancel} errors={errors} selectedRecord={selectedRecord} />
-        <AnimalTable records={records} deleteRecord={this.deleteRecord} setSelectedRecord={this.setSelectedRecord} redirectToGroup={this.redirectToGroup} />
+        <Form
+          createOrUpdateRecord={this.createOrUpdateRecord}
+          handleCancel={this.handleCancel}
+          errors={errors}
+          selectedRecord={selectedRecord} />
+
+        <Table
+          records={records}
+          deleteRecord={this.deleteRecord}
+          setSelectedRecord={this.setSelectedRecord}
+          showRecord={this.showRecord} />
       </div>
     )
   }
 }
 
-export default Animals
+Index.propTypes = {
+  path: PropTypes.string.isRequired,
+  animalId: PropTypes.string.isRequired,
+  groupId: PropTypes.string.isRequired,
+}
+
+export default Index

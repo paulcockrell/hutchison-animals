@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import FormFeedback from '../../components/shared/FormFeedback.jsx'
 
-class AnimalForm extends Component {
+class Form extends Component {
   constructor(props) {
     super(props)
 
@@ -111,11 +111,11 @@ class AnimalForm extends Component {
   }
 }
 
-AnimalForm.propTypes = {
+Form.propTypes = {
   createOrUpdateRecord: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   errors: PropTypes.array.isRequired,
   selectedRecord: PropTypes.object,
 }
 
-export default AnimalForm
+export default Form

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import FormFeedback from '../../components/shared/FormFeedback.jsx'
 
-class GroupForm extends Component {
+class Form extends Component {
   constructor(props) {
     super(props)
 
@@ -74,7 +74,7 @@ class GroupForm extends Component {
         <div className="card">
           <header className="card-header">
             <p className="card-header-title">
-              Group form
+              Breed form
             </p>
           </header>
           <div className="card-content">
@@ -84,7 +84,7 @@ class GroupForm extends Component {
                   <label className="label">Name</label>
 
                   <div className="control">
-                    <input className="input" type="text" placeholder="Group name" value={name} onChange={this.handleChange}/>
+                    <input className="input" type="text" placeholder="Breed name" value={name} onChange={this.handleChange}/>
                   </div>
 
                   <div className={`field-errors ${errors.length > 0 ? '' : 'is-hidden'}`}>
@@ -111,11 +111,11 @@ class GroupForm extends Component {
   }
 }
 
-GroupForm.propTypes = {
+Form.propTypes = {
   createOrUpdateRecord: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   errors: PropTypes.array.isRequired,
   selectedRecord: PropTypes.object,
 }
 
-export default GroupForm
+export default Form

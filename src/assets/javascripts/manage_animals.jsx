@@ -1,5 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Animals from './components/animal/Animals.jsx'
+import Index from './components/animal/Index.jsx'
 
-ReactDOM.render(<Animals path="/animals" />, document.getElementById('animals'))
+ReactDOM.render(<Index path="/animals" />, document.getElementById('animals'))

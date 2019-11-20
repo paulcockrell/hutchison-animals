@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import GroupForm from './GroupForm.jsx'
-import GroupTable from './GroupTable.jsx'
+import Form from './Form.jsx'
+import Table from './Table.jsx'
 import FormFeedback from '../../components/shared/FormFeedback.jsx'
 import Breadcrumb from '../../components/shared/Breadcrumb.jsx'
 
@@ -14,12 +14,14 @@ const RESET = 'reset'
 const ERROR = 'error'
 const ERROR_PATH = '/error'
 
-class Groups extends Component {
+class Index extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       path: this.props.path,
+      animalId: this.props.animalId,
+      groupId: this.props.groupId,
       records: [],
       currentPage: 1,
       errors: [],
@@ -35,6 +37,7 @@ class Groups extends Component {
     this.handleCancel = this.handleCancel.bind(this)
     this.setSelectedRecord = this.setSelectedRecord.bind(this)
     this.redirectToBreed = this.redirectToBreed.bind(this)
+    this.showRecord = this.showRecord.bind(this)
   }
 
   componentDidMount() {
@@ -50,7 +53,7 @@ class Groups extends Component {
     fetch(url)
     .then(response => response.json())
     .then(record => this.setState({animal: record}))
-      .catch(_response => window.location = ERROR_PATH)
+    .catch(_response => window.location = ERROR_PATH)
   }
 
   loadRecords(currentPage = 1) {
@@ -134,13 +137,23 @@ class Groups extends Component {
     })
   }
 
+  showRecord(record) {
+    const {
+      path,
+      animalId,
+    } = this.state
+
+    const url = `/manage/animals/${animalId}/groups/${record.id}`
+    window.location = url
+  }
+
   redirectToBreed(record) {
     const {
       path,
       animal,
     } = this.state
 
-    const url = `/manage${path}/groups/${animal.id}/breeds`
+    const url = `/manage${path}/groups/${record.id}/breeds`
     window.location = url
   }
 
@@ -191,12 +204,14 @@ class Groups extends Component {
       feedback,
       selectedRecord,
       animal,
+      animalId,
     } = this.state
 
     const url = '/manage/animals'
     const breadcrumbs = [
       {url: '/', name: 'home'},
       {url: '/manage/animals', name: 'animals'},
+      {url: `/manage/animals/${animalId}`, name: animalId},
       {url: '#', name: 'groups'},
     ]
 
@@ -214,21 +229,32 @@ class Groups extends Component {
         </section>
         <section className="section">
           <h1 className="title has-margin-bottom-75">
-            Manage Groups for Animal <a href={url} alt="Animals">{animal.name}</a>
+            Manage Groups for Animal <a href={`/manage${path}`} alt="Animals">{animal.name}</a>
           </h1>
         </section>
 
         {feedback ? <FormFeedback feedback={feedback} /> : null }
 
-        <GroupForm createOrUpdateRecord={this.createOrUpdateRecord} handleCancel={this.handleCancel} errors={errors} selectedRecord={selectedRecord} />
-        <GroupTable records={records} deleteRecord={this.deleteRecord} setSelectedRecord={this.setSelectedRecord} redirectToBreed={this.redirectToBreed} />
+        <Form
+          createOrUpdateRecord={this.createOrUpdateRecord}
+          handleCancel={this.handleCancel}
+          errors={errors}
+          selectedRecord={selectedRecord} />
+
+        <Table
+          records={records}
+          deleteRecord={this.deleteRecord}
+          setSelectedRecord={this.setSelectedRecord}
+          redirectToBreed={this.redirectToBreed}
+          showRecord={this.showRecord} />
       </div>
     )
   }
 }
 
-Groups.propTypes = {
+Index.propTypes = {
   path: PropTypes.string.isRequired,
+  animalId: PropTypes.string.isRequired,
 }
 
-export default Groups
+export default Index

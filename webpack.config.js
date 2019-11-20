@@ -5,8 +5,11 @@ module.exports = {
     'layout': './src/assets/javascripts/layout.jsx',
     'index': './src/assets/javascripts/index.jsx',
     'manage_animals': './src/assets/javascripts/manage_animals.jsx',
+    'show_animal': './src/assets/javascripts/show_animal.jsx',
     'manage_groups': './src/assets/javascripts/manage_groups.jsx',
+    'show_group': './src/assets/javascripts/show_group.jsx',
     'manage_breeds': './src/assets/javascripts/manage_breeds.jsx',
+    'show_breed': './src/assets/javascripts/show_breed.jsx',
   },
   output: {
     filename: '[name].js',

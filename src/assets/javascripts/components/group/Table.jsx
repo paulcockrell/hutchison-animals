@@ -6,7 +6,7 @@ import moment from 'moment'
 
 const RECORDS_PER_PAGE = 5
 
-class AnimalTable extends Component {
+class Table extends Component {
   constructor(props) {
     super(props)
 
@@ -68,7 +68,8 @@ class AnimalTable extends Component {
                 <td>
                   <div className="buttons is-pulled-right">
                     <button className="button is-link" onClick={this.props.setSelectedRecord.bind(this, record)}>Edit</button>
-                    <button className="button is-link is-lighter" onClick={this.props.redirectToGroup.bind(this, record)}>Groups</button>
+                    <button className="button is-link" onClick={this.props.showRecord.bind(this, record)}>Show</button>
+                    <button className="button is-link is-lighter" onClick={this.props.redirectToBreed.bind(this, record)}>Breeds</button>
                     <button className="button is-link is-light" onClick={this.props.deleteRecord.bind(this, record)}>Delete</button>
                   </div>
                 </td>
@@ -82,11 +83,12 @@ class AnimalTable extends Component {
   }
 }
 
-AnimalTable.propTypes = {
+Table.propTypes = {
   deleteRecord: PropTypes.func.isRequired,
   setSelectedRecord: PropTypes.func.isRequired,
-  redirectToGroup: PropTypes.func.isRequired,
+  redirectToBreed: PropTypes.func.isRequired,
+  showRecord: PropTypes.func.isRequired,
   records: PropTypes.array.isRequired,
 }
 
-export default AnimalTable
+export default Table

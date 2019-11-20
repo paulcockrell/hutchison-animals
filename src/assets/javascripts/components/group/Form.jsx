@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import FormFeedback from '../../components/shared/FormFeedback.jsx'
 
-class BreedForm extends Component {
+class Form extends Component {
   constructor(props) {
     super(props)
 
@@ -74,7 +74,7 @@ class BreedForm extends Component {
         <div className="card">
           <header className="card-header">
             <p className="card-header-title">
-              Breed form
+              Group form
             </p>
           </header>
           <div className="card-content">
@@ -84,7 +84,7 @@ class BreedForm extends Component {
                   <label className="label">Name</label>
 
                   <div className="control">
-                    <input className="input" type="text" placeholder="Breed name" value={name} onChange={this.handleChange}/>
+                    <input className="input" type="text" placeholder="Group name" value={name} onChange={this.handleChange}/>
                   </div>
 
                   <div className={`field-errors ${errors.length > 0 ? '' : 'is-hidden'}`}>
@@ -111,11 +111,11 @@ class BreedForm extends Component {
   }
 }
 
-BreedForm.propTypes = {
+Form.propTypes = {
   createOrUpdateRecord: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   errors: PropTypes.array.isRequired,
   selectedRecord: PropTypes.object,
 }
 
-export default BreedForm
+export default Form

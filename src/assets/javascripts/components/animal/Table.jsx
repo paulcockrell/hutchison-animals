@@ -6,7 +6,7 @@ import moment from 'moment'
 
 const RECORDS_PER_PAGE = 5
 
-class BreedTable extends Component {
+class Table extends Component {
   constructor(props) {
     super(props)
 
@@ -68,6 +68,8 @@ class BreedTable extends Component {
                 <td>
                   <div className="buttons is-pulled-right">
                     <button className="button is-link" onClick={this.props.setSelectedRecord.bind(this, record)}>Edit</button>
+                    <button className="button is-link" onClick={this.props.showRecord.bind(this, record)}>Show</button>
+                    <button className="button is-link is-lighter" onClick={this.props.redirectToGroups.bind(this, record)}>Groups</button>
                     <button className="button is-link is-light" onClick={this.props.deleteRecord.bind(this, record)}>Delete</button>
                   </div>
                 </td>
@@ -81,10 +83,12 @@ class BreedTable extends Component {
   }
 }
 
-BreedTable.propTypes = {
+Table.propTypes = {
   deleteRecord: PropTypes.func.isRequired,
   setSelectedRecord: PropTypes.func.isRequired,
+  redirectToGroups: PropTypes.func.isRequired,
+  showRecord: PropTypes.func.isRequired,
   records: PropTypes.array.isRequired,
 }
 
-export default BreedTable
+export default Table

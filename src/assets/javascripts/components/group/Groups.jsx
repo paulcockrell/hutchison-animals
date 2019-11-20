@@ -34,6 +34,7 @@ class Groups extends Component {
     this.deleteRecord = this.deleteRecord.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.setSelectedRecord = this.setSelectedRecord.bind(this)
+    this.redirectToBreed = this.redirectToBreed.bind(this)
   }
 
   componentDidMount() {
@@ -133,6 +134,16 @@ class Groups extends Component {
     })
   }
 
+  redirectToBreed(record) {
+    const {
+      path,
+      animal,
+    } = this.state
+
+    const url = `/manage${path}/groups/${animal.id}/breeds`
+    window.location = url
+  }
+
   setSelectedRecord(record) {
     this.setState({
       selectedRecord: record,
@@ -210,7 +221,7 @@ class Groups extends Component {
         {feedback ? <FormFeedback feedback={feedback} /> : null }
 
         <GroupForm createOrUpdateRecord={this.createOrUpdateRecord} handleCancel={this.handleCancel} errors={errors} selectedRecord={selectedRecord} />
-        <GroupTable records={records} deleteRecord={this.deleteRecord} setSelectedRecord={this.setSelectedRecord} />
+        <GroupTable records={records} deleteRecord={this.deleteRecord} setSelectedRecord={this.setSelectedRecord} redirectToBreed={this.redirectToBreed} />
       </div>
     )
   }

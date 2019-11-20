@@ -49,7 +49,7 @@ class Breeds extends Component {
     fetch(url)
     .then(response => response.json())
     .then(record => this.setState({group: record}))
-      .catch(_response => window.location = ERROR_PATH)
+    .catch(_response => window.location = ERROR_PATH)
   }
 
   loadRecords(currentPage = 1) {
@@ -185,7 +185,7 @@ class Breeds extends Component {
     const url = '/manage/groups'
     const breadcrumbs = [
       {url: '/', name: 'home'},
-      {url: '/manage/groups', name: 'groups'},
+      {url: '/manage/animals', name: 'animals'},
       {url: '/manage/groups', name: 'groups'},
       {url: '#', name: 'breeds'},
     ]

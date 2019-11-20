@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
       record_event(changeset.instance, Event::Action::CREATED)
       changeset.instance.to_json
     else
-      changeset.errors.to_json
+      halt env, status_code: 404, response: changeset.errors.to_json
     end
   end
 

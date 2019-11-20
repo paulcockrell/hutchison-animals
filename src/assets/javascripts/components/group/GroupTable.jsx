@@ -68,6 +68,7 @@ class GroupTable extends Component {
                 <td>
                   <div className="buttons is-pulled-right">
                     <button className="button is-link" onClick={this.props.setSelectedRecord.bind(this, record)}>Edit</button>
+                    <button className="button is-link is-lighter" onClick={this.props.redirectToBreed.bind(this, record)}>Breeds</button>
                     <button className="button is-link is-light" onClick={this.props.deleteRecord.bind(this, record)}>Delete</button>
                   </div>
                 </td>
@@ -84,6 +85,7 @@ class GroupTable extends Component {
 GroupTable.propTypes = {
   deleteRecord: PropTypes.func.isRequired,
   setSelectedRecord: PropTypes.func.isRequired,
+  redirectToBreed: PropTypes.func.isRequired,
   records: PropTypes.array.isRequired,
 }
 

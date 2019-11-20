@@ -44,6 +44,14 @@ module Hutchison::Animals
     render "src/views/manage_groups.ecr", "src/views/layouts/layout.ecr"
   end
 
+  # Breeds
+  #
+  get "/manage/animals/:id/groups/:group_id/breeds" do |env|
+    env.response.content_type = "text/html"
+    animal_id = env.params.url["id"]
+    group_id = env.params.url["group_id"]
+    render "src/views/manage_breeds.ecr", "src/views/layouts/layout.ecr"
+  end
 
   Kemal.run
 end

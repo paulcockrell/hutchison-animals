@@ -6,7 +6,7 @@ It has a ReactJS UI for users to manage their lists of Animals, groups and breed
 
 The backend service is a simple Crystal application making use of the Kemal framework.
 
-The data is persisted in a SQLite3 database.
+The data is persisted in a Postgres database.
 
 ## Prerequisits
 

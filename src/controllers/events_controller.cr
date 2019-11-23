@@ -1,4 +1,14 @@
 class EventsController < ApplicationController
+
+  # Website Events index page
+  #
+  get "/admin/events" do |env|
+    env.response.content_type = "text/html"
+    render "src/views/events.ecr", "src/views/layouts/layout.ecr"
+  end
+
+  # API
+
   # http --json GET http://localhost/events_count -- print Hhb
   #
   # Index

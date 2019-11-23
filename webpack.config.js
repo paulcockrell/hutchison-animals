@@ -10,6 +10,7 @@ module.exports = {
     'show_group': './src/assets/javascripts/show_group.jsx',
     'manage_breeds': './src/assets/javascripts/manage_breeds.jsx',
     'show_breed': './src/assets/javascripts/show_breed.jsx',
+    'events': './src/assets/javascripts/events.jsx',
   },
   output: {
     filename: '[name].js',

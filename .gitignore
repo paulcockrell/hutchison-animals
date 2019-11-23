@@ -8,3 +8,4 @@
 .env
 ./yarn-error.log
 /public/js/app.js
+/tmp/

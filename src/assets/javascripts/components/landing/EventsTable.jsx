@@ -51,7 +51,7 @@ class EventsTable extends Component {
               </div>
           </div>
           <footer className="card-footer">
-              <a href="#" className="card-footer-item">View All</a>
+              <a href="/admin/events" className="card-footer-item">View All</a>
           </footer>
       </div>
     )

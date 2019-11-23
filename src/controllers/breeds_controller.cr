@@ -1,4 +1,26 @@
 class BreedsController < ApplicationController
+
+  # Website Breeds index page
+  #
+  get "/manage/animals/:id/groups/:group_id/breeds" do |env|
+    env.response.content_type = "text/html"
+    animal_id = env.params.url["id"]
+    group_id = env.params.url["group_id"]
+    render "src/views/manage_breeds.ecr", "src/views/layouts/layout.ecr"
+  end
+
+  # Website Breeds show page
+  #
+  get "/manage/animals/:id/groups/:group_id/breeds/:breed_id" do |env|
+    env.response.content_type = "text/html"
+    animal_id = env.params.url["id"]
+    group_id = env.params.url["group_id"]
+    breed_id = env.params.url["breed_id"]
+    render "src/views/show_breed.ecr", "src/views/layouts/layout.ecr"
+  end
+
+  # API routes
+
   # http --json GET http://localhost/breeds_count -- print Hhb
   #
   # Index

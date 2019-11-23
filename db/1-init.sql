@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS animals(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR (255) NOT NULL UNIQUE,
+  created_at TIMESTAMP,
+  updated_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS groups(
+  id SERIAL PRIMARY KEY,
+  animal_id INTEGER REFERENCES animals(id) ON DELETE CASCADE,
+  name VARCHAR (255) NOT NULL UNIQUE,
+  created_at TIMESTAMP,
+  updated_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS breeds(
+  id SERIAL PRIMARY KEY,
+  group_id INTEGER REFERENCES groups(id) ON DELETE CASCADE,
+  name VARCHAR (255) NOT NULL UNIQUE,
+  created_at TIMESTAMP,
+  updated_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS events(
+  id SERIAL PRIMARY KEY,
+  object_id INTEGER NOT NULL,
+  object_class VARCHAR (50) NOT NULL,
+  action_type INTEGER NOT NULL,
+  created_at TIMESTAMP,
+  updated_at TIMESTAMP
+);

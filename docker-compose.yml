@@ -6,26 +6,20 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      SHARDS_CACHE_PATH: /app/.shards
-      DB_PATH: db/hutchison_animals_dev.db
+      - SHARDS_CACHE_PATH=/app/.shards
+      - DATABASE_URL=postgres://postgres:postgres@db/hutchison
     volumes:
       - .:/app
     command: >
-      bash -c "sqlite3 $${DB_PATH} < db/migrations.sql
-      && nf start -j Procfile.dev"
+      bash -c "nf start -j Procfile.dev"
     ports:
       - 3000:3000
       - 8080:8080
     networks:
+      - internal
       - external
-
-  test:
-    << : *app
-    environment:
-      DB_PATH: /tmp/hutchison_animals_test.db
-    command: >
-      bash -c "sqlite3 $${DB_PATH} < db/migrations.sql
-      && KEMAL_ENV=test DB_PATH=$${DB_PATH} crystal spec"
+    links:
+      - db
 
   build:
     build:
@@ -38,5 +32,21 @@ services:
     command: >
       bash -c "crystal build src/hutchison-animals.cr --release -o ./hutchison-animals"
 
+  db:
+    image: postgres:9.5
+    environment:
+      POSTGRES_DB: hutchison
+    volumes:
+      - data:/var/lib/postgres/data
+      - ./db/:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+    networks:
+      - internal
+
 networks:
   external:
+  internal:
+
+volumes:
+  data:

@@ -4,6 +4,8 @@ WORKDIR /app
 # install base dependencies
 RUN apt-get update && apt-get install -y \
       libgconf-2-4 \
+      wget \
+      gnupg2 \
       curl \
       libreadline-dev \
       libssl-dev \
@@ -12,8 +14,7 @@ RUN apt-get update && apt-get install -y \
       libevent-openssl-2.0-5 \
       libevent-pthreads-2.0-5 \
       libssl-dev \
-      libsqlite3-dev \
-      sqlite3 && \
+      postgresql-client && \
       # Node dependency
       curl --silent --location https://deb.nodesource.com/setup_9.x | bash - && \
       apt-get install -y nodejs && \

@@ -7,8 +7,8 @@ abstract class ApplicationController
     extend Crecto::Repo
 
     config do |conf|
-      conf.adapter = Crecto::Adapters::SQLite3
-      conf.database = ENV.fetch("DB_PATH") { "./db/hutchison_animals.db" }
+      conf.adapter = Crecto::Adapters::Postgres
+      conf.uri = ENV.fetch("DATABASE_URL")
     end
   end
 
@@ -18,7 +18,7 @@ abstract class ApplicationController
 
   def self.record_event(object, action)
     event = Event.new
-    event.object_id = object.id.as(Int64)
+    event.object_id = object.id.as(Int32)
     event.object_class = object.class.to_s
     event.action = action
 

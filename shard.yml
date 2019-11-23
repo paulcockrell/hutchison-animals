@@ -27,3 +27,5 @@ dependencies:
   callbacks:
     github: vladfaust/callbacks.cr
     version: ~> 0.2.0
+  pg:
+    github: will/crystal-pg

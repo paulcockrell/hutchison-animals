@@ -1,6 +1,6 @@
 require "logger"
 require "kemal"
-require "sqlite3"
+require "pg"
 require "crecto"
 require "dotenv"
 require "callbacks"
@@ -18,60 +18,20 @@ module Hutchison::Animals
 
   # Setup database logging
   #
-  file = File.open("log/database.log", "w")
-  file.sync = true
-  Crecto::DbLogger.set_handler(file)
+  Crecto::DbLogger.set_handler(STDOUT)
 
-  # Index
+  # Website Index page
   #
   get "/" do |env|
     env.response.content_type = "text/html"
     render "src/views/index.ecr", "src/views/layouts/layout.ecr"
   end
 
-  # Animals
+  # Website Help page
   #
-  get "/manage/animals" do |env|
+  get "/help" do |env|
     env.response.content_type = "text/html"
-    render "src/views/manage_animals.ecr", "src/views/layouts/layout.ecr"
-  end
-
-  get "/manage/animals/:id" do |env|
-    env.response.content_type = "text/html"
-    animal_id = env.params.url["id"]
-    render "src/views/show_animal.ecr", "src/views/layouts/layout.ecr"
-  end
-
-  # Groups
-  #
-  get "/manage/animals/:id/groups" do |env|
-    env.response.content_type = "text/html"
-    animal_id = env.params.url["id"]
-    render "src/views/manage_groups.ecr", "src/views/layouts/layout.ecr"
-  end
-
-  get "/manage/animals/:id/groups/:group_id" do |env|
-    env.response.content_type = "text/html"
-    animal_id = env.params.url["id"]
-    group_id = env.params.url["group_id"]
-    render "src/views/show_group.ecr", "src/views/layouts/layout.ecr"
-  end
-
-  # Breeds
-  #
-  get "/manage/animals/:id/groups/:group_id/breeds" do |env|
-    env.response.content_type = "text/html"
-    animal_id = env.params.url["id"]
-    group_id = env.params.url["group_id"]
-    render "src/views/manage_breeds.ecr", "src/views/layouts/layout.ecr"
-  end
-
-  get "/manage/animals/:id/groups/:group_id/breeds/:breed_id" do |env|
-    env.response.content_type = "text/html"
-    animal_id = env.params.url["id"]
-    group_id = env.params.url["group_id"]
-    breed_id = env.params.url["breed_id"]
-    render "src/views/show_breed.ecr", "src/views/layouts/layout.ecr"
+    render "src/views/help.ecr", "src/views/layouts/layout.ecr"
   end
 
   Kemal.run

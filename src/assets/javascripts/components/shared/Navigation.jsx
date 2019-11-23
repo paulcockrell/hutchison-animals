@@ -51,7 +51,7 @@ class Navigation extends Component {
               Manage
             </a>
 
-            <a className="navbar-item" href="/events">
+            <a className="navbar-item" href="/admin/events">
               Events
             </a>
 

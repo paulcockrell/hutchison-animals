@@ -1,9 +1,26 @@
 class AnimalsController < ApplicationController
   PAGE_LIMIT = 10
 
+  # Website Animals index page
+  #
+  get "/manage/animals" do |env|
+    env.response.content_type = "text/html"
+    render "src/views/manage_animals.ecr", "src/views/layouts/layout.ecr"
+  end
+
+  # Website Animals show page
+  #
+  get "/manage/animals/:id" do |env|
+    env.response.content_type = "text/html"
+    animal_id = env.params.url["id"]
+    render "src/views/show_animal.ecr", "src/views/layouts/layout.ecr"
+  end
+
+  # API routes
+
   # http --json GET http://localhost/animals_count -- print Hhb
   #
-  # Index
+  # Animal Count
   #
   get "/animals_count" do |env|
     count = Repo.aggregate(Animal, :count, :id).as(Int64)

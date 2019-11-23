@@ -54,7 +54,7 @@ class Table extends Component {
           </thead>
           <tbody>
             {recordsSubset.map((record) => (
-              <tr key={record.objectId}>
+              <tr key={record.createdAt}>
                 <td>{record.objectClass}</td>
                 <td>{record.objectId}</td>
                 <td>{record.actionType}</td>

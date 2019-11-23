@@ -2,7 +2,7 @@
 
 Hutchison Animals is a simple Animal management application.
 
-It has a ReactJS UI for users to manage their lists of Animals, groups and breeds.
+It has a basic UI, built with ReactJS for users to manage their lists of Animals, groups and breeds.
 
 The backend service is a simple Crystal application making use of the Kemal framework.
 
@@ -50,17 +50,17 @@ Each animal, group and breed management pages follow the same design fo consiten
 
 Every time an action is taken (add, edit, delete and view) an event is recorded. This allows you to see the historical interactions with the site. This can be viewed on the home page and events page.
 
-There is a help page giving the user guidance on how to use the site.
+There is a basic help page giving the user guidance on how to use the site.
 
 ## What I haven't done but if time permitted would have done in a real life scenario
 
-First of all, I would have used a more fully fledged framework, like (Lucky)[https://luckyframework.org/]. I chose not to do this, as I think (practically) anyone can make use of frameworks, and their generators to put in place all the required elements to complete this test with almost no knowledge of what is going on. I used a very basic framework called Kemal, where you are 'close to the metal' and must implement most of it yourself.
+First of all, I would have used a more fully fledged framework, like (Lucky)[https://luckyframework.org/]. I chose not to do this, as I think (practically) anyone can make use of frameworks, and their generators to put in place all the required elements to complete this test with almost no knowledge of what is going on. I used a very basic framework called Kemal, where you are 'close to the metal' and must implement most functionality yourself, and has no generators or convensions.
 
 Secondly, I absolutely would have written a lot of tests. This is paramamount for delivering reliable systems with confidence. Again I just don't have time with work and personal commitments to do this for this case.
 
 Thirdly, there is no security present. For the user or the API request. I would have implemented Authentication and Authorisation, along with user management. The requests would have been protected with CORS.
 
-Lastly, I would have implemented an import mechanism/feature. This would all you to take the example JSON document and import it against an Animal.
+Lastly, I would have implemented an import mechanism/feature. This would allow you to take the example JSON document and import it against a given Animal.
 
 ## Thanks
 
